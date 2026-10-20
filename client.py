@@ -23,9 +23,12 @@ def receive_exact(client_reader, size: int) -> bytes:
     return data
 
 
-server_ip : str = input("Enter server IP address: ")
-server_port : int = int(input("Enter server port number: "))
-server_password : str = input("Enter server pin: ")
+import key
+connection_key : str = input("Enter connection key: ")
+key_data = key.decode(connection_key)
+server_ip : str = key_data[0]
+server_port : int = key_data[1]
+server_password : str = str(key_data[2])
 
 try:
     client_socket : socket.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

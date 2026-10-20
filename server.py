@@ -116,6 +116,10 @@ ip : str = get_local_ip()
 data : dict[str, bytes] = {}
 port : int = easygui.integerbox("Enter port number for the server:", "Port Input", lowerbound=4096, upperbound=65535) # type: ignore
 password : str = easygui.passwordbox("Enter pin for the server:", "Password Input")
+import key
+key_code : str = key.encode(ip, port, int(password))
+print(f"Server connection key: {key_code}")
+
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server_socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
